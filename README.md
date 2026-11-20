@@ -1,5 +1,24 @@
 # qalert — self-improving crypto alert engine
 
+<p align="left">
+  <img src="https://img.shields.io/badge/python-3.12-3776AB?logo=python&logoColor=white" alt="Python"/>
+  <img src="https://img.shields.io/badge/FastAPI-service-009688?logo=fastapi&logoColor=white" alt="FastAPI"/>
+  <img src="https://img.shields.io/badge/docker-compose-2496ED?logo=docker&logoColor=white" alt="Docker"/>
+  <img src="https://img.shields.io/badge/PostgreSQL-migrations-4169E1?logo=postgresql&logoColor=white" alt="Postgres"/>
+  <img src="https://img.shields.io/badge/pytest-23%20tests-success?logo=pytest&logoColor=white" alt="Tests"/>
+  <img src="https://img.shields.io/badge/deploy-Railway-0B0D0E?logo=railway&logoColor=white" alt="Railway"/>
+</p>
+
+> **DevOps / SRE highlights**
+>
+> - **Resilience:** automatic failover between two data providers, circuit breakers, staleness and sanity gates — bad data is excluded, never silently scored
+> - **Idempotent jobs:** each scheduled run has a deterministic `run_id`, so a re-trigger is a no-op
+> - **Self-protection:** a kill switch demotes alerts automatically when live performance degrades
+> - **Observability:** `GET /health` (last run + circuit-breaker state), `GET /report`, daily heartbeat, Telegram alerting
+> - **Config as data:** versioned config in Postgres — change behaviour without a redeploy; every output records the config version that produced it
+> - **Packaging:** [Dockerfile](Dockerfile) + [compose.yml](compose.yml), SQL [migrations](migrations/), secrets via [`.env.example`](.env.example) only
+> - **Scheduling:** cron or n8n triggers hitting HTTP endpoints
+
 Production alert system for a configurable watchlist: entry, exit, TP, SL, and
 risk alerts with regime gating, empirically calibrated confidence, automatic
 outcome labeling, and a self-protective kill switch.
